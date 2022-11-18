@@ -2,6 +2,7 @@ import json
 from datetime import datetime
 from django.http import HttpResponse, HttpResponseNotAllowed, JsonResponse
 from django.views.decorators.csrf import ensure_csrf_cookie
+from django.views.generic import TemplateView
 
 
 def add_view(request, *args, **kwargs):
@@ -62,3 +63,7 @@ def divide_view(request, *args, **kwargs):
     else:
         response = JsonResponse({'answer': data['A'] / data['B']})
     return response
+
+
+class IndexView(TemplateView):
+    template_name = 'index.html'
