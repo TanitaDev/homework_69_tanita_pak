@@ -3,15 +3,37 @@ fetch(url = 'http://localhost:8000/add/')
         return response.json();
     })
     .then(data => {
-        console.log(data)
-//        for (let i = 0; i < data.length; i++) {
-//            let char_data = data[i]
-//            let markUp = `<a href="character.html?id=${char_data['char_id']}" id="characterIitem" class="character_item">
-//                                <div class="img">
-//                                <img src="${char_data['img']}" alt="" />
-//                                </div>
-//                                <p class="name_label">${char_data['name']}</p>
-//                            </a>`
-//            $(".characters_block").append(markUp)
-//        }
+        $("#button_add").on('click', function () {
+            $("#result_item").text(data['answer'])
+        })
+    })
+
+fetch(url = 'http://localhost:8000/subtract/')
+    .then(response => {
+        return response.json();
+    })
+    .then(data => {
+        $("#button_subtract").on('click', function () {
+            $("#result_item").text(data['answer'])
+        })
+    })
+
+fetch(url = 'http://localhost:8000/multiply/')
+    .then(response => {
+        return response.json();
+    })
+    .then(data => {
+        $("#button_multiply").on('click', function () {
+            $("#result_item").text(data['answer'])
+        })
+    })
+
+fetch(url = 'http://localhost:8000/divide/')
+    .then(response => {
+        return response.json();
+    })
+    .then(data => {
+        $("#button_divide").on('click', function () {
+            $("#result_item").text(data['answer'])
+        })
     })

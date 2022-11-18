@@ -1,15 +1,14 @@
-import json
-from datetime import datetime
-from django.http import HttpResponse, HttpResponseNotAllowed, JsonResponse
+from django.http import JsonResponse, HttpResponse, HttpResponseNotAllowed
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.views.generic import TemplateView
 
+data = {
+    "A": 1234,
+    "B": 4567,
+}
+
 
 def add_view(request, *args, **kwargs):
-    data = {
-        'A': 1234,
-        'B': 4567,
-    }
     if type(data['A']) != int or type(data['B']) != int:
         response = JsonResponse({"error": "Not integer"})
         response.status_code = 400
@@ -20,10 +19,6 @@ def add_view(request, *args, **kwargs):
 
 
 def subtract_view(request, *args, **kwargs):
-    data = {
-        'A': 1234,
-        'B': 4567,
-    }
     if type(data['A']) != int or type(data['B']) != int:
         response = JsonResponse({"error": "Not integer"})
         response.status_code = 400
@@ -34,10 +29,6 @@ def subtract_view(request, *args, **kwargs):
 
 
 def multiply_view(request, *args, **kwargs):
-    data = {
-        'A': 1234,
-        'B': 4567,
-    }
     if type(data['A']) != int or type(data['B']) != int:
         response = JsonResponse({"error": "Not integer"})
         response.status_code = 400
@@ -48,10 +39,6 @@ def multiply_view(request, *args, **kwargs):
 
 
 def divide_view(request, *args, **kwargs):
-    data = {
-        'A': 1234,
-        'B': 4567,
-    }
     if type(data['A']) != int or type(data['B']) != int:
         response = JsonResponse({"error": "Not integer"})
         response.status_code = 400
@@ -63,6 +50,13 @@ def divide_view(request, *args, **kwargs):
     else:
         response = JsonResponse({'answer': data['A'] / data['B']})
     return response
+
+
+@ensure_csrf_cookie
+def get_token_view(request, *args, **kwargs):
+    if request.method == 'GET':
+        return HttpResponse()
+    return HttpResponseNotAllowed('Only GET request are allowed')
 
 
 class IndexView(TemplateView):

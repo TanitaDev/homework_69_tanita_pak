@@ -3,12 +3,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Calculator</title>
 </head>
 <body>
 <div class="wrapper">
-
+    <div class="num_block">
+        {% csrf_token %}
+        <label for="num1">Число 1 <input type="number" name="" id="num1"></label>
+        <label for="num2">Число 2 <input type="number" name="" id="num2"></label>
+    </div>
+    <button id="button_add">Сложить</button>
+    <button id="button_subtract">Вычесть</button>
+    <button id="button_multiply">Умножить</button>
+    <button id="button_divide">Разделить</button>
+    <div class="result_block">
+        <p>Ответ: <span id="result_item" class="result_item"></span></p>
+    </div>
 </div>
+<script
+        src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+        crossorigin="anonymous"
+></script>
 <script src="{% static 'main.js' %}"></script>
 </body>
 </html>
